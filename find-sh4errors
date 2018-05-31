@@ -119,7 +119,7 @@ do
 	$interp -n "$i" 2>/dev/null
 	if [ $? -ne 0 ] ; then
 		printf "%-44s" "$i"
-		rpm -qf --queryformat "%{NAME}-%{VERSION}" $i
+#		rpm -qf --queryformat "%{NAME}-%{VERSION}" $i
 		echo
 		FOUND=1
 	fi

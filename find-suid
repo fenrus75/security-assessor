@@ -5,10 +5,7 @@ display () {
 	while [ $# -ge 1 ]
 	do
 		type=`file $1 | egrep -wo $types 2>/dev/null`
-		package=`rpm -qf --queryformat "%{NAME}-%{VERSION}" $1 2>/dev/null`
-		if [ $? -eq 1 ] ; then
-			package="Not Owned"
-		fi
+		package="Not Owned"
 		ls -l $1 | awk '{ printf "%-44s %-10s %-6s %s\n", $9, $3, t, p} ' t="$type" p="$package"
 		shift
 	done

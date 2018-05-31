@@ -30,11 +30,6 @@ if [ -e $output ] ; then
 fi
 touch $output
 
-# Start by checking some kernel sysctls
-echo -e "Important kernel sysctl settings" | tee -a $output
-echo    "================================" | tee -a $output
-./sysctl-check | tee -a $output
-
 # Next file permissions
 echo -e "\nSTIG file permission scan" | tee -a $output
 echo      "=========================" | tee -a $output
@@ -47,10 +42,6 @@ echo      "======================" | tee -a $output
 echo -e "\nHidden executable check" | tee -a $output
 echo      "=======================" | tee -a $output
 ./find-hidden-exec | tee -a $output
-
-echo -e "\nSupplemental groups" | tee -a $output
-echo      "===================" | tee -a $output
-cat /etc/group | tr ':' ' '| awk '$4  { printf "%-16s\t%s\n", $1, $4 }' | tee -a $output
 
 echo -e "\nGroup writable files" | tee -a $output
 echo      "====================" | tee -a $output
@@ -66,20 +57,20 @@ echo -e "\nList all file system based capability programs" | tee -a $output
 echo      "==============================================" | tee -a $output
 filecap 2> /dev/null | tee -a $output
 
-echo -e "\nList all setuid" | tee -a $output
-echo      "===============" | tee -a $output
-./find-suid | tee -a $output
+#echo -e "\nList all setuid" | tee -a $output
+#echo      "===============" | tee -a $output
+#./find-suid | tee -a $output
 
-echo -e "\nList all setgid" | tee -a $output
-echo      "===============" | tee -a $output
-./find-sgid | tee -a $output
-
-echo -e "\nList all daemons enabled for runlevel 3" | tee -a $output
-echo      "=======================================" | tee -a $output
-chkconfig --list 2>/dev/null | grep 3:on | awk '{ print $1 }' | tee -a $output
-if [ -e /bin/systemctl ] ; then
-	systemctl list-unit-files --type=service | grep enable | awk '{ print $1 }' | sed '/\.service/s///' | tee -a $output
-fi
+#echo -e "\nList all setgid" | tee -a $output
+#echo      "===============" | tee -a $output
+#./find-sgid | tee -a $output
+#
+#echo -e "\nList all daemons enabled for runlevel 3" | tee -a $output
+#echo      "=======================================" | tee -a $output
+#chkconfig --list 2>/dev/null | grep 3:on | awk '{ print $1 }' | tee -a $output
+#if [ -e /bin/systemctl ] ; then
+#	systemctl list-unit-files --type=service | grep enable | awk '{ print $1 }' | sed '/\.service/s///' | tee -a $output
+#fi
 
 echo -e "\nLook for shell scripts with errors" | tee -a $output
 echo      "==================================" | tee -a $output
@@ -105,9 +96,9 @@ echo -e "\nLook for ELF binaries with well known tmp files" | tee -a $output
 echo      "===============================================" | tee -a $output
 ./find-elf4tmp | tee -a $output
 
-echo -e "\nLook for ELF binaries using deprecated functions" | tee -a $output
-echo      "================================================" | tee -a $output
-./find-legacy | tee -a $output
+#echo -e "\nLook for ELF binaries using deprecated functions" | tee -a $output
+#echo      "================================================" | tee -a $output
+#./find-legacy | tee -a $output
 
 
 echo -e "\nSetuid security check" | tee -a $output

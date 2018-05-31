@@ -99,7 +99,7 @@ do
 
 		# Well its a bad one...out with it
 		printf "%-44s" $f
-		rpm -qf --queryformat "%{NAME}-%{VERSION}" $f
+#		rpm -qf --queryformat "%{NAME}-%{VERSION}" $f
 		echo
 		FOUND=1
 	fi

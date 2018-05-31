@@ -58,7 +58,7 @@ for d in $dirs ; do
 				# Red
 				printf "\033[31m%-44s\033[m" $f
 				#rpm -qf --queryformat "%{NAME}-%{VERSION}" $f
-				rpm -qf --queryformat " %{SOURCERPM}" $f
+#				rpm -qf --queryformat " %{SOURCERPM}" $f
 				echo
 			else
 				# One last test to see if chdir is within 4
@@ -70,7 +70,7 @@ for d in $dirs ; do
 						FOUND=1
 					fi
 					printf "\033[31m%-44s\033[m" $f
-					rpm -qf --queryformat "	%{SOURCERPM}" $f
+#					rpm -qf --queryformat "	%{SOURCERPM}" $f
 					echo
 				fi
 			fi
