@@ -126,7 +126,7 @@ find /etc -maxdepth 1 -type f \( ! -user root \) -name alias -printf "GEN004360:
 find /etc -maxdepth 1 -type f -perm /0133 -name alias -printf "GEN004380: %p is %m should be 0644 or less\n" 2>/dev/null
 
 #23) 1480 all home dirs must be 0750 or less
-find /home -mindepth 1 -maxdepth 1 -type d -perm /0027 -printf "GEN001480: %p is %m should be 0750 or less\n" 2>/dev/null
+#find /home -mindepth 1 -maxdepth 1 -type d -perm /0027 -printf "GEN001480: %p is %m should be 0750 or less\n" 2>/dev/null
 
 #24) 1860 all shell files in /etc must be owned by root
 find /etc -maxdepth 1 -type f \( ! -user root \) -name bashrc -printf "GEN001860: %p is user % should be root\n" 2>/dev/null
